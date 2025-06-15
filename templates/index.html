@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Rutas con Algoritmo Manhattan</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="sidebar">
+        <h2>Calculadora de Rutas con Algoritmo Manhattan</h2>
+
+        <label for="search_origin">Origen (busca o haz clic en el mapa):</label>
+        <input type="text" id="search_origin" placeholder="Ej: Jilotepec, México">
+
+        <label for="search_destination">Destino (busca o haz clic en el mapa):</label>
+        <input type="text" id="search_destination" placeholder="Ej: CDMX">
+
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button id="geocode-button" style="flex: 1;">Buscar Coordenadas</button>
+            <button id="search-route-button" style="flex: 1;">Calcular Ruta</button>
+        </div>
+
+        <button id="clear-markers-button">Limpiar Puntos y Ruta</button>
+
+        <h3>Tipo de Transporte</h3>
+        <div class="transport-options">
+            <div class="transport-option" id="car" onclick="selectTransport('car')">
+                <img src="https://i.pinimg.com/474x/11/50/60/1150605f0c4b042680fad26d5d2c0cdc.jpg" alt="Auto">
+                <span>Auto</span>
+            </div>
+            <div class="transport-option" id="motorcycle" onclick="selectTransport('motorcycle')">
+                <img src="https://st2.depositphotos.com/8064294/11542/v/450/depositphotos_115429834-stock-illustration-scooter-icon-on-white-background.jpg" alt="Motocicleta">
+                <span>Moto</span>
+            </div>
+            <div class="transport-option" id="truck" onclick="selectTransport('truck')">
+                <img src="https://img.freepik.com/vector-premium/icono-transporte-publico_933463-9118.jpg" alt="Camión">
+                <span>Camión</span>
+            </div>
+            <div class="transport-option" id="trailer" onclick="selectTransport('trailer')">
+                <img src="https://www.shutterstock.com/image-vector/truck-tractor-semi-trailer-vector-260nw-1354306361.jpg" alt="Tráiler">
+                <span>Tráiler</span>
+            </div>
+        </div>
+
+        <div id="fuel-selection" class="hidden-by-transport">
+            <h3>Tipo de Combustible</h3>
+            <div class="fuel-options">
+                <div class="fuel-option" id="magna" onclick="selectFuel('magna')">
+                    <img src="https://www.gasolineracuatrohermanos.com/assets/img/combustibles/magna.png" alt="Magna">
+                    <span>Magna</span>
+                </div>
+                <div class="fuel-option" id="premium" onclick="selectFuel('premium')">
+                    <img src="https://www.gasolineracuatrohermanos.com/assets/img/combustibles/premium.png" alt="Premium">
+                    <span>Premium</span>
+                </div>
+                <div class="fuel-option" id="diesel" onclick="selectFuel('diesel')">
+                    <img src="https://www.gasolineracuatrohermanos.com/assets/img/combustibles/diesel.png" alt="Diesel">
+                    <span>Diesel</span>
+                </div>
+            </div>
+        </div>
+
+        <label for="fuel_efficiency">Rendimiento (km/litro):</label>
+        <input type="number" id="fuel_efficiency" value="10" min="0.1" step="0.1">
+
+        <div class="results-section">
+            <h3>Resultados de la Ruta</h3>
+            <div>
+                <label for="distance">Distancia (km):</label>
+                <input type="text" id="distance" readonly>
+            </div>
+            <div>
+                <label for="operating_hours">Tiempo (horas):</label>
+                <input type="text" id="operating_hours" readonly>
+            </div>
+            <div class="hidden-by-transport" id="fuel_liters_display">
+                <label for="fuel_liters">Consumo (litros):</label>
+                <input type="text" id="fuel_liters" readonly>
+            </div>
+            <div class="hidden-by-transport" id="fuel_cost_display">
+                <label for="fuel_cost">Costo Combustible ($):</label>
+                <input type="text" id="fuel_cost" readonly>
+            </div>
+        </div>
+    </div>
+
+    <div id="map"></div> 
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+    

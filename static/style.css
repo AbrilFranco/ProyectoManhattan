@@ -1,0 +1,200 @@
+/* === ESTILOS GENERALES === */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    height: 100vh;
+    color: #333;
+    background-color: #f0f2f5;
+}
+
+/* === SIDEBAR === */
+#sidebar {
+    width: 360px;
+    padding: 25px;
+    background: #ffffff;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar h2, #sidebar h3 {
+    color: #0069d9;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    display: block;
+    color: #444;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;    
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* === BOTONES === */
+button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#clear-markers-button {
+    background-color: #dc3545;
+}
+
+#clear-markers-button:hover {
+    background-color: #c82333;
+}
+
+/* === OPCIONES DE TRANSPORTE Y COMBUSTIBLE === */
+.transport-options, .fuel-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.transport-option,
+.fuel-option {
+    flex: 1 0 calc(45% - 10px);
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    background-color: #fafafa;
+}
+
+.transport-option:hover,
+.fuel-option:hover {
+    background-color: #f0f8ff;
+}
+
+.transport-option.selected,
+.fuel-option.selected {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0,123,255,0.3);
+    background-color: #e6f0ff;
+}
+
+.transport-option img,
+.fuel-option img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    margin-bottom: 5px;
+}
+
+.transport-option.selected img,
+.fuel-option.selected img {
+    border-color: #007bff;
+}
+
+/* === SECCIÓN DE RESULTADOS === */
+.results-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
+}
+
+.results-section h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.results-section div {
+    margin-bottom: 12px;
+}
+
+.results-section label {
+    font-weight: 500;
+    width: 140px;
+    display: inline-block;
+    color: #555;
+}
+
+.results-section input {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    font-weight: bold;
+    width: calc(100% - 150px);
+}
+
+/* === SECCIÓN COMBUSTIBLE === */
+#fuel-selection {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.hidden-by-transport {
+    display: none;
+}
+
+/* === MAPA === */
+#map {
+    flex-grow: 1;
+    height: 100vh;
+}
+
+/* === ESTILOS PARA RUTAS EN EL MAPA === */
+.leaflet-routing-alt {
+    stroke: red !important;
+    stroke-width: 3px !important;
+    opacity: 0.7 !important;
+}
+
+.leaflet-routing-container .leaflet-routing-line {
+    stroke: blue !important;
+    stroke-width: 5px !important;
+    opacity: 1 !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+    }
+
+    #map {
+        height: 400px;
+    }
+}
