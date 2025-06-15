@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import osmnx as ox
+import os
 import networkx as nx
 from math import radians, sin, cos, sqrt, atan2
 
@@ -76,4 +77,5 @@ def manhattan_route():
 # ------------------------------------------
 # Ejecutar la app
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
